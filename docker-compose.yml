@@ -1,27 +1,43 @@
+yaml
 version: '3'
 
 volumes:
   pg_data:
   static:
+  media:
 
 services:
   db:
     image: postgres:13
     volumes:
       - pg_data:/var/lib/postgresql/data
+    env_file: .env
+
   backend:
     build: ./backend/
     env_file: .env
-  frontend:
-    env_file: .env
-    build: ./frontend/
-    command: cp -r /app/build/. /static/
+    depends_on:
+      - db
     volumes:
-      - static:/static
+      - pg_data:/var/lib/postgresql/data
+      - static:/backend/static
+      - media:/backend/media
+    ports:
+      - 8000:8000
+
+  frontend:
+    build: ./frontend/
+    env_file: .env
+    volumes:
+      - static:/frontend/static
+    ports:
+      - 3000:3000
+
   gateway:
     build: ./nginx/
     env_file: .env
     ports:
       - 9000:80
     volumes:
-      - static:/static
+      - static:/frontend/static
+      - media:/backend/media
