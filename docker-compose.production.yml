@@ -17,7 +17,7 @@ services:
     restart: always
 
   backend:
-    build: ./backend/
+    image: ivnio/kittygram_backend
     container_name: kittygram_backend
     env_file: .env
     volumes:
@@ -28,7 +28,7 @@ services:
     restart: on-failure
 
   frontend:
-    build: ./frontend/
+    image: ivnio/kittygram_frontend
     container_name: kittygram_frontend
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
@@ -39,7 +39,7 @@ services:
     restart: no
 
   gateway:
-    build: ./nginx/
+    image: ivnio/kittygram_gateway
     container_name: kittygram_gateway
     env_file: .env
     volumes:
