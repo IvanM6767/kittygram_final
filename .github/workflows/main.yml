@@ -134,7 +134,6 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
-        password: ${{ secrets.PASSWORD }}
         key: ${{ secrets.SSH_KEY }}
         source: "docker-compose.production.yml"
         target: "kittygram"
@@ -143,7 +142,6 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
-        password: ${{ secrets.PASSWORD }}
         key: ${{ secrets.SSH_KEY }}
         script: |
           cd kittygram
