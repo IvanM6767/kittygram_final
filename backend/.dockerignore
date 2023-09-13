@@ -1,7 +1,8 @@
 venv
-.git
-db.sqlite3
-static_backend
+.git 
+db.sqlite3 
 .idea
-.vscoe
+.vscode
 .env
+/etc
+/log
