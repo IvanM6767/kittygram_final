@@ -46,7 +46,7 @@ services:
       - static_kittygram:/staticfiles
       - media_kittygram:/media
     ports:
-      - "8080:80"
+      - "9000:80"
     depends_on:
       - backend
     restart: always
